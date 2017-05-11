@@ -1,17 +1,24 @@
-环境：
+﻿# saltstack安装+基本命令
+
+标签（空格分隔）： saltstack
+
+---
+
+**环境：**
 node1:172.16.1.60   OS:centos 7.3   master   hostname:centos7u3-1
 node2:172.16.1.61   OS:centos 7.3   minion   hostname:centos7u3-2
 
-准备工作：
+**准备工作：**
 在/etc/hosts文件中添加（如有DNS服务器，此操作可不用操作）
 172.16.1.60 centos7u3-1
 172.16.1.61 centos7u3-2
 
-master 安装
+**master 安装:**
 yum install salt-master salt-minion -y
+
 配置：
-[root@centos7u3-1 srv]# egrep -v '^#|^$' /etc/salt/master 
-auto_accept: True   #打开自动注册
+$$[root@centos7u3-1 srv]# egrep -v '^#|^$' /etc/salt/master 
+auto_accept: True       **#打开自动注册**
 file_roots:
    base:
      - /srv/salt/
@@ -21,10 +28,10 @@ pillar_roots:
 [root@centos7u3-1 srv]# egrep -v '^#|^$' /etc/salt/minion
 master: 172.16.1.60
 
-启动服务：
+**启动服务：**
 systemctl start salt-master salt-minion
 
-minion安装:
+**minion安装:**
 yum install salt-minion -y 
 [root@centos7u3-2 ~]# egrep -v '^#|^$' /etc/salt/minion
 master: 172.16.1.60
@@ -44,17 +51,17 @@ salt -G 'os:Centos' test.ping
 ## 远程代码执行测试
 salt '*' cmd.exec_code python 'import sys; print sys.version'
 常用模块介绍
-(1)、cp模块（实现远程文件、目录的复制，以及下载URL文件等操作）
-## 将主服务器file_roots指定位置下的目录复制到被控主机
+## (1)、cp模块（实现远程文件、目录的复制，以及下载URL文件等操作）
+> * 将主服务器file_roots指定位置下的目录复制到被控主机
  salt '*' cp.get_dir salt://hellotest /data
  
-##将主服务器file_roots指定位置下的文件复制到被控主机
+> * 将主服务器file_roots指定位置下的文件复制到被控主机
  salt '*' cp.get_file salt://hellotest/rocketzhang /root/rocketzhang
  
-## 下载指定URL内容到被控主机指定位置
+> * 下载指定URL内容到被控主机指定位置
  salt '*' cp.get_url http://xxx.xyz.com/download/0/files.tgz /root/files.tgz
  
-(2)、cmd模块（实现远程的命令行调用执行）
+## (2)、cmd模块（实现远程的命令行调用执行）
  salt '*' cmd.run 'netstat -ntlp'
  
 (3)、cron模块（实现被控主机的crontab操作）
@@ -66,23 +73,23 @@ salt '*' cmd.exec_code python 'import sys; print sys.version'
  salt '*' cron.rm_job root 'date >/dev/null 2>&1'
  salt '*' cron.raw_cron root
  
-(4)、dnsutil模块（实现被控主机通用DNS操作）
-## 为被控主机添加指定的hosts主机配置项
+## (4)、dnsutil模块（实现被控主机通用DNS操作）
+> * 为被控主机添加指定的hosts主机配置项
  salt '*' dnsutil.hosts_append /etc/hosts 127.0.0.1 rocketzhang.qq.com
  
-(5)、file模块（被控主机文件常见操作，包括文件读写、权限、查找、校验等）
+## (5)、file模块（被控主机文件常见操作，包括文件读写、权限、查找、校验等）
  salt '*' file.get_sum /etc/resolv.conf md5
  salt '*' file.stats /etc/resolv.conf
-(6)、network模块（返回被控主机网络信息）
+## (6)、network模块（返回被控主机网络信息）
  salt '*' network.ip_addrs
  salt '*' network.interfaces
 
  
-(7)、pkg包管理模块（被控主机程序包管理，如yum、apt-get等）
+## (7)、pkg包管理模块（被控主机程序包管理，如yum、apt-get等）
  salt '*' pkg.install nmap
  salt '*' pkg.file_list nmap
  
-(8)、service 服务模块（被控主机程序包服务管理）
+## (8)、service 服务模块（被控主机程序包服务管理）
  salt '*' service.enable crond
  salt '*' service.disable crond
  salt '*' service.status crond
@@ -91,12 +98,12 @@ salt '*' cmd.exec_code python 'import sys; print sys.version'
  salt '*' service.restart crond
  salt '*' service.reload crond
 
-(9)、更多功能
+## (9)、更多功能
 更多的功能，比如：grains、pillar、states、modules、returner、runners、reactor等，还有如下高级命令的使用，以及模板配置的渲染、扩展模块的二次开发等，可以自己去深入学习哈。
 
 
-salt相关的管理命令：
-salt-run manage.up                               # 查看存活的minion  
+**salt相关的管理命令：**
+salt-run manage.up                               # 查看存活的minion
 salt-run manage.down                            # 查看死掉的minion
 salt-run manage.down removekeys=True      # 查看down掉的minion，并将其删除
 salt-run manage.status                          # 查看minion的相关状态
@@ -151,10 +158,14 @@ salt '*' cmd.run 'uptime'                         # 远程命令执行测试
 
 
 
-grains选项：
-1
-2
-3	salt '*' grains.ls                    # 查看grains分类
+**grains选项：**
+salt '*' grains.ls                    # 查看grains分类
 salt '*' grains.items                      # 查看grains所有信息
 salt '*' grains.item osrelease                  # 查看grains某个信息
+
+
+
+
+
+
 
