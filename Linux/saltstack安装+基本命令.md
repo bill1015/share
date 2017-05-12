@@ -5,15 +5,18 @@
 ---
 
 **环境：**
-
+```
 node1:172.16.1.60   OS:centos 7.3   master   hostname:centos7u3-1
 node2:172.16.1.61   OS:centos 7.3   minion   hostname:centos7u3-2
+```
 
 **准备工作：**
 
+```
 在/etc/hosts文件中添加（如有DNS服务器，此操作可不用操作）
 172.16.1.60 centos7u3-1
 172.16.1.61 centos7u3-2
+```
 
 **master 安装:**
 
@@ -128,9 +131,9 @@ salt -d                                            # 查看帮助文档
 salt -d|grep service                               # 查看service相关模块命令
 salt '*' sys.doc                                   # 查看帮助文档
 salt-key  -L                                       # 查询所有接收到的证书
-salt-key  -a <证书名>                              # 接收单个证书
+salt-key  -a <证书名>                               # 接收单个证书
 salt-key  -A                                       # 接受所有证书
-salt-key  -d <证书名>                              # 删除单个证书
+salt-key  -d <证书名>                               # 删除单个证书
 salt-key  -D                                       # 删除所有证书
 salt '*' service.get_all                           # 获取主机所有服务
 salt '*' service.reload sshd                       # 重载sshd服务
