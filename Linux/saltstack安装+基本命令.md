@@ -32,9 +32,11 @@ pillar_roots:
 master: 172.16.1.60
 
 **启动服务：**
+
 systemctl start salt-master salt-minion
 
 **minion安装:**
+
 yum install salt-minion -y 
 [root@centos7u3-2 ~]# egrep -v '^#|^$' /etc/salt/minion
 master: 172.16.1.60
@@ -108,7 +110,7 @@ salt '*' cmd.exec_code python 'import sys; print sys.version'
 ## (9)、更多功能
 更多的功能，比如：grains、pillar、states、modules、returner、runners、reactor等，还有如下高级命令的使用，以及模板配置的渲染、扩展模块的二次开发等，可以自己去深入学习哈。
 
-
+```
 **salt相关的管理命令：**
 salt-run manage.up                               # 查看存活的minion
 salt-run manage.down                            # 查看死掉的minion
@@ -169,7 +171,7 @@ salt '*' cmd.run 'uptime'                         # 远程命令执行测试
 salt '*' grains.ls                    # 查看grains分类
 salt '*' grains.items                      # 查看grains所有信息
 salt '*' grains.item osrelease                  # 查看grains某个信息
-
+```
 
 
 
