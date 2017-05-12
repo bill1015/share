@@ -271,12 +271,12 @@ iptables -A OUTPUT -o eth0 -p tcp --sport 995 -m state --state ESTABLISHED -j AC
 
 ```
 iptables -A INPUT -p tcp --dport 80 -m limit --limit 25/minute --limit-burst 100 -j ACCEPT
-```
 
 上述例子中：
 -m limit: 启用limit扩展
 –limit 25/minute: 允许最多每分钟25个连接（根据需求更改）。
 –limit-burst 100: 只有当连接达到limit-burst水平(此例为100)时才启用上述limit/minute限制。
+```
 
 ># 24. 端口转发
 
