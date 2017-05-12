@@ -61,7 +61,9 @@ salt -G 'os:Centos' test.ping
  salt '*' grains.item os
 ## 远程代码执行测试
 salt '*' cmd.exec_code python 'import sys; print sys.version'
-常用模块介绍
+
+>#常用模块介绍
+
 ## (1)、cp模块（实现远程文件、目录的复制，以及下载URL文件等操作）
 > * 将主服务器file_roots指定位置下的目录复制到被控主机
 
@@ -131,9 +133,9 @@ salt -d                                            # 查看帮助文档
 salt -d|grep service                               # 查看service相关模块命令
 salt '*' sys.doc                                   # 查看帮助文档
 salt-key  -L                                       # 查询所有接收到的证书
-salt-key  -a <证书名>                               # 接收单个证书
+salt-key  -a <证书名>                              # 接收单个证书
 salt-key  -A                                       # 接受所有证书
-salt-key  -d <证书名>                               # 删除单个证书
+salt-key  -d <证书名>                              # 删除单个证书
 salt-key  -D                                       # 删除所有证书
 salt '*' service.get_all                           # 获取主机所有服务
 salt '*' service.reload sshd                       # 重载sshd服务
