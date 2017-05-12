@@ -5,10 +5,12 @@
 ---
 
 **环境：**
+
 node1:172.16.1.60   OS:centos 7.3   master   hostname:centos7u3-1
 node2:172.16.1.61   OS:centos 7.3   minion   hostname:centos7u3-2
 
 **准备工作：**
+
 在/etc/hosts文件中添加（如有DNS服务器，此操作可不用操作）
 172.16.1.60 centos7u3-1
 172.16.1.61 centos7u3-2
@@ -113,37 +115,37 @@ salt '*' cmd.exec_code python 'import sys; print sys.version'
 
 ```
 **salt相关的管理命令：**
-salt-run manage.up                               # 查看存活的minion
-salt-run manage.down                            # 查看死掉的minion
-salt-run manage.down removekeys=True      # 查看down掉的minion，并将其删除
-salt-run manage.status                          # 查看minion的相关状态
-salt-run manage.versions                        # 查看salt的所有master和minion的版本信息
+salt-run manage.up                                 # 查看存活的minion
+salt-run manage.down                               # 查看死掉的minion
+salt-run manage.down removekeys=True               # 查看down掉的minion，并将其删除
+salt-run manage.status                             # 查看minion的相关状态
+salt-run manage.versions                           # 查看salt的所有master和minion的版本信息
 salt-run jobs.active                               # 查看哪些系统任务还在处理中
 salt-run jobs.list_jobs                            # 显示所有的已完成或部分完成的任务信息
-salt '*' saltutil.running                           # 查看运行的jobs ID
-salt \* saltutil.kill_job 20151209034239907625 # kill掉进程ID
-salt -d                                              # 查看帮助文档
+salt '*' saltutil.running                          # 查看运行的jobs ID
+salt \* saltutil.kill_job 20151209034239907625     # kill掉进程ID
+salt -d                                            # 查看帮助文档
 salt -d|grep service                               # 查看service相关模块命令
 salt '*' sys.doc                                   # 查看帮助文档
 salt-key  -L                                       # 查询所有接收到的证书
-salt-key  -a <证书名>                           # 接收单个证书
-salt-key  -A                                    # 接受所有证书
-salt-key  -d <证书名>                          # 删除单个证书
-salt-key  -D                                    # 删除所有证书
-salt '*' service.get_all                        # 获取主机所有服务
-salt '*' service.reload sshd                        # 重载sshd服务
-salt '*' pkg.list_pkgs                                 # 显示软件包版本列表
+salt-key  -a <证书名>                              # 接收单个证书
+salt-key  -A                                       # 接受所有证书
+salt-key  -d <证书名>                              # 删除单个证书
+salt-key  -D                                       # 删除所有证书
+salt '*' service.get_all                           # 获取主机所有服务
+salt '*' service.reload sshd                       # 重载sshd服务
+salt '*' pkg.list_pkgs                             # 显示软件包版本列表
 salt '*' pkg.version python                        # 显示软件包版本信息
-salt '*' pkg.install httpd                        # 安装软件包
-salt 'node1.com' service.status mysql                # 查看mysql服务状态
-salt 'node1.com' service.start mysql                # 启动mysql服务
-salt 'node1.com' cmd.run 'service mysql status'        # 与上面一样查看服务
-salt '*' sys.list_modules                        # 模块列表
+salt '*' pkg.install httpd                         # 安装软件包
+salt 'node1.com' service.status mysql              # 查看mysql服务状态
+salt 'node1.com' service.start mysql               # 启动mysql服务
+salt 'node1.com' cmd.run 'service mysql status'    # 与上面一样查看服务
+salt '*' sys.list_modules                          # 模块列表
 salt-cp '*'  /etc/hosts   /etc/hosts               # 把master上的hosts文件分发到所有主机
-salt '*' cp.get_file salt://ceshi/b /tmp/test       # 把salt-master端相应的文件，分发文件到minion端
-salt '*' cp.get_dir salt://zabbix /tmp               # 把salt-master端相应的目录，分发文件到minion端
+salt '*' cp.get_file salt://ceshi/b /tmp/test      # 把salt-master端相应的文件，分发文件到minion端
+salt '*' cp.get_dir salt://zabbix /tmp             # 把salt-master端相应的目录，分发文件到minion端
 salt '*' file.copy /tmp/zabbix.sls /tmp/sls        # 把salt-master端对应文件拷贝到minion端相应目录下
-salt '*' cmd.run 'uptime'                         # 远程命令执行测试
+salt '*' cmd.run 'uptime'                          # 远程命令执行测试
 
 远程执行脚本：
 'cmd.script:'
