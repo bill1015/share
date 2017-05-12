@@ -14,6 +14,7 @@ node2:172.16.1.61   OS:centos 7.3   minion   hostname:centos7u3-2
 172.16.1.61 centos7u3-2
 
 **master 安装:**
+
 yum install salt-master salt-minion -y
 
 配置：
@@ -168,8 +169,8 @@ salt '*' cmd.run 'uptime'                         # 远程命令执行测试
 
 
 **grains选项：**
-salt '*' grains.ls                    # 查看grains分类
-salt '*' grains.items                      # 查看grains所有信息
+salt '*' grains.ls                              # 查看grains分类
+salt '*' grains.items                           # 查看grains所有信息
 salt '*' grains.item osrelease                  # 查看grains某个信息
 ```
 
