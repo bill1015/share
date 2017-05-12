@@ -56,12 +56,15 @@ salt '*' cmd.exec_code python 'import sys; print sys.version'
 常用模块介绍
 ## (1)、cp模块（实现远程文件、目录的复制，以及下载URL文件等操作）
 > * 将主服务器file_roots指定位置下的目录复制到被控主机
+
  salt '*' cp.get_dir salt://hellotest /data
  
 > * 将主服务器file_roots指定位置下的文件复制到被控主机
+
  salt '*' cp.get_file salt://hellotest/rocketzhang /root/rocketzhang
  
 > * 下载指定URL内容到被控主机指定位置
+
  salt '*' cp.get_url http://xxx.xyz.com/download/0/files.tgz /root/files.tgz
  
 ## (2)、cmd模块（实现远程的命令行调用执行）
@@ -78,6 +81,7 @@ salt '*' cmd.exec_code python 'import sys; print sys.version'
  
 ## (4)、dnsutil模块（实现被控主机通用DNS操作）
 > * 为被控主机添加指定的hosts主机配置项
+
  salt '*' dnsutil.hosts_append /etc/hosts 127.0.0.1 rocketzhang.qq.com
  
 ## (5)、file模块（被控主机文件常见操作，包括文件读写、权限、查找、校验等）
