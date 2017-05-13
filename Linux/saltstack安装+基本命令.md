@@ -26,7 +26,7 @@ yum install salt-master salt-minion -y
 
 $$[root@centos7u3-1 srv]# egrep -v '^#|^$' /etc/salt/master 
 ```
-auto_accept: True       **#打开自动注册**
+auto_accept: True       #打开自动注册
 file_roots:
    base:
      - /srv/salt/
@@ -44,6 +44,7 @@ systemctl start salt-master salt-minion
 **minion安装:**
 
 yum install salt-minion -y 
+
 [root@centos7u3-2 ~]# egrep -v '^#|^$' /etc/salt/minion
 master: 172.16.1.60
 
@@ -62,7 +63,7 @@ salt -G 'os:Centos' test.ping
 ## 远程代码执行测试
 salt '*' cmd.exec_code python 'import sys; print sys.version'
 
->#常用模块介绍
+># 常用模块介绍
 
 ## (1)、cp模块（实现远程文件、目录的复制，以及下载URL文件等操作）
 > * 将主服务器file_roots指定位置下的目录复制到被控主机
