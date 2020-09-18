@@ -113,4 +113,3 @@ EOF
 		fi
         systemctl start mariadb.service			
 }
-	
